@@ -1,0 +1,8 @@
+{
+    "serviceResponse": {
+        "authenticationFailure": {
+            "code": "INVALID_TICKET",
+            "description": "Ticket ST-1856339-aA5Yuvrxzpv8Tau1cYQ7 not recognized"
+        }
+    }
+}
