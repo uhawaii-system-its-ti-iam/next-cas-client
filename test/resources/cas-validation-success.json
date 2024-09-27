@@ -1,0 +1,16 @@
+{
+    "serviceResponse": {
+        "authenticationSuccess": {
+            "user": "username",
+            "proxyGrantingTicket": "PGTIOU-84678-8a9d...",
+            "proxies": ["https://proxy1/pgtUrl", "https://proxy2/pgtUrl"],
+            "attributes": {
+                "firstName": "John",
+                "affiliation": ["staff", "faculty"],
+                "title": "Mr.",
+                "email": "jdoe@example.orgmailto:jdoe@example.org",
+                "lastname": "Doe"
+            }
+        }
+    }
+}

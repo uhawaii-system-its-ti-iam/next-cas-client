@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <saml1p:Response InResponseTo="fu4lt9kuex6.2024-03-02T04:22:20.681Z" IssueInstant="2024-03-02T04:21:52.029Z" MajorVersion="1" MinorVersion="1" ResponseID="_19a94ee2c5ebf35f62a6d482c2e23e9a" xmlns:saml1p="urn:oasis:names:tc:SAML:1.0:protocol">
+            <saml1p:Status>
+                <saml1p:StatusCode Value="saml1p:RequestDenied"/>
+                <saml1p:StatusMessage>Ticket "test" not recognized</saml1p:StatusMessage>
+            </saml1p:Status>
+        </saml1p:Response>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
