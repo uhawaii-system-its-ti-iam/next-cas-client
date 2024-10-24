@@ -1,0 +1,22 @@
+name: Coverage
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  generate-badges:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm install
+      - run: npm run test:coverage
+      - run: |
+          git fetch
+          git checkout badges
+      - uses: jpb06/jest-badges-action@latest
+        with:
+          branches: '*'
+          target-branch: badges
+      - run: git push origin badges

@@ -1,0 +1,70 @@
+{
+    "name": "next-cas-client",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "repository": "https://github.com/uhawaii-system-its-ti-iam/next-cas-client",
+    "homepage": "https://github.com/uhawaii-system-its-ti-iam/next-cas-client",
+    "scripts": {
+        "build": "tsup",
+        "lint": "eslint",
+        "test": "jest",
+        "test:coverage": "jest --coverage",
+        "test:watch": "jest --watch"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "module": "./dist/index.mjs",
+            "types": "./dist/index.d.mts"
+        },
+        "./client": {
+            "import": "./dist/client.mjs",
+            "module": "./dist/client.mjs",
+            "types": "./dist/client.d.mts"
+        }
+    },
+    "keywords": [
+        "next.js",
+        "cas",
+        "client",
+        "auth",
+        "authentication"
+    ],
+    "author": "Jordan Wong <jordanw4@hawaii.edu>",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@eslint/js": "^9.13.0",
+        "@swc/core": "^1.7.26",
+        "@swc/jest": "^0.2.36",
+        "@types/eslint__js": "^8.42.3",
+        "@types/jest": "^29.5.13",
+        "@types/node": "^22.7.3",
+        "@types/uniqid": "^5.3.4",
+        "@xmldom/xmldom": "^0.9.3",
+        "eslint": "^9.13.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "iron-session": "^8.0.3",
+        "jest": "^29.7.0",
+        "jest-environment-jsdom": "^29.7.0",
+        "jest-fetch-mock": "^3.0.3",
+        "prettier": "^3.3.3",
+        "ts-node": "^10.9.2",
+        "tsup": "^8.3.0",
+        "typescript": "^5.6.2",
+        "typescript-eslint": "^8.11.0",
+        "uniqid": "^5.4.0",
+        "xpath": "^0.0.34"
+    },
+    "peerDependencies": {
+        "next": "^13.5.4 || ^14.0.3 || >=15.0.0-rc",
+        "react": ">=18 || >=19.0.0-beta",
+        "react-dom": ">=18 || >=19.0.0-beta"
+    },
+    "engines": {
+        "node": ">=18.17.0"
+    }
+}
