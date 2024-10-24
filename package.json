@@ -41,7 +41,7 @@
         "@swc/jest": "^0.2.36",
         "@types/eslint__js": "^8.42.3",
         "@types/jest": "^29.5.13",
-        "@types/node": "^22.7.3",
+        "@types/node": "^22.7.9",
         "@types/uniqid": "^5.3.4",
         "@xmldom/xmldom": "^0.9.3",
         "eslint": "^9.13.0",
