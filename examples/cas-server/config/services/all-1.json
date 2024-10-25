@@ -1,0 +1,6 @@
+{
+    "@class": "org.apereo.cas.services.RegexRegisteredService",
+    "serviceId": "http://localhost:3000/.*",
+    "name": "Next CAS Client Example",
+    "description": "Login with username: casuser, password: Mellon"
+}
