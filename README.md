@@ -1,4 +1,4 @@
-# next-cas-client [![CI](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml/badge.svg)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml) ![Coverage](https://github.com/uhawaii-system-its-ti-iam/uh-groupings/blob/badges/badges/coverage-jest%20coverage.svg) [![GitHub license](https://img.shields.io/github/license/uhawaii-system-its-ti-iam/next-cas-client?style=flat)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/master/LICENSE)
+# next-cas-client [![CI](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml/badge.svg)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml) ![Coverage](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/badges/badges/coverage-jest%20coverage.svg) [![GitHub license](https://img.shields.io/github/license/uhawaii-system-its-ti-iam/next-cas-client?style=flat)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/master/LICENSE)
 
 _Maintained by the University of Hawaiʻi._
 
@@ -6,7 +6,7 @@ Designed for Next.js, `next-cas-client` serves as an API platform to interact wi
 
 Currently supports CAS 2.0, CAS 3.0 and SAML 1.1 service validation methods.
 
-**Contributions to this repo to support more validation protocols is highly encouraged! (See [contributing](#contributing))**
+**Contributions to this repo to support more validation protocols is highly encouraged!** (See [contributing](#contributing))
 
 ## Table of Contents
 
