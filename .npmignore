@@ -1,9 +1,17 @@
+/.github
 /src
+/test
+/__mocks__
 /node_modules
 /coverage
 
-.env
+.env*
 .DS_Store
+CODEOWNERS
 
+eslint.config.mjs
+.prettierrc
+.prettierignore
 tsconfig.json
 tsup.config.ts
+jest.config.ts
