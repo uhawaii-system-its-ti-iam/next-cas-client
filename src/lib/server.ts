@@ -18,5 +18,5 @@ export const getCurrentUser = async <T = CasUser>(): Promise<T | null> => {
  */
 export const isLoggedIn = async (): Promise<boolean> => {
     const { user } = await getSession();
-    return user !== null;
+    return user !== null && user !== undefined;
 };
