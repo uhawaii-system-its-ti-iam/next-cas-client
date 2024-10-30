@@ -13,7 +13,8 @@ jobs:
       - run: npm install
       - run: npm run test:coverage
       - run: |
-          git fetch
+          git fetch origin badges
+          git restore package-lock.json
           git checkout badges
       - uses: jpb06/jest-badges-action@latest
         with:
