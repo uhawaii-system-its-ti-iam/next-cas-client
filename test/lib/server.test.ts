@@ -24,7 +24,7 @@ describe('Server', () => {
         it('should return false', async () => {
             jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession());
 
-            expect(await isLoggedIn()).toBeTruthy();
+            expect(await isLoggedIn()).toBeFalsy();
         });
     });
 });
