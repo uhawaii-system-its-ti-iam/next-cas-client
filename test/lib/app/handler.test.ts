@@ -1,7 +1,7 @@
-import { handleAuth } from '@/lib/handler';
+import { handleAuth } from '@/lib/app/handler';
 import { ValidatorProtocol } from '@/lib/validators/validator';
 import { NextRequest } from 'next/server';
-import { createMockSession, loadResourceXML } from '../setup-jest';
+import { createMockSession, loadResourceXML } from '../../setup-jest';
 import * as IronSession from 'iron-session';
 import { CasUser } from '@/lib/types';
 import { redirect } from 'next/navigation';
@@ -86,6 +86,7 @@ describe('Handler', () => {
                 await handler(nextRequest, { params: { client: 'logout' } });
 
                 expect(sessionDestroySpy).toHaveBeenCalled();
+                expect(redirect).toHaveBeenCalled();
             });
         });
     });
