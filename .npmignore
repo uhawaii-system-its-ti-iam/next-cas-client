@@ -1,6 +1,7 @@
 /.github
 /src
 /test
+/examples
 /__mocks__
 /node_modules
 /coverage
@@ -8,6 +9,7 @@
 .env*
 .DS_Store
 CODEOWNERS
+CONTRIBUTING.md
 
 eslint.config.mjs
 .prettierrc

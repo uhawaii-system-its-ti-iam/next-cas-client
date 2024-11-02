@@ -185,10 +185,17 @@ const isLoggedIn = await isLoggedIn();
 
 ## Examples
 
-For the full demo, Docker is required.
+A fully functional demo is available using Docker.
 
--   [App Router](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/main/examples/app-router)
--   [Page Router](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/main/examples/page-router)
+To start:
+
+1. Clone or download this repo
+2. Change directory to `/examples`
+3. Execute `docker compose up`. A CAS server for demo purposes will launch at https://localhost:8443/cas
+4. Change directory to `/app-router` or `/pages-router` depending on the router you would like to view the example for
+5. Execute `npm run dev`. The Next.js example app will be available at http://localhost:3000
+
+**Note:** You may encounter a `NET:ERR_CERT_INVALID` error in your browser when attempting to visit the CAS login page. Bypass the error by trusting the page. The browser is attempting to protect you from visiting a suspicious secure site at https://localhost.
 
 ## Contributing
 

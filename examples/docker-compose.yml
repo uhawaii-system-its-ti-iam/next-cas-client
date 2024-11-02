@@ -1,0 +1,11 @@
+version: 1.0.0
+
+services:
+  cas-server:
+    build:
+      context: ./cas-server
+    ports:
+      - 8443:8443
+    volumes:
+      - ./cas-server/config/cas.properties:/etc/cas/config/cas.properties
+      - ./cas-server/config/services:/etc/cas/config/services
