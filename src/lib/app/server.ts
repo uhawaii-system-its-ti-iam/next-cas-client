@@ -1,5 +1,5 @@
+import { CasUser } from '../types';
 import { getSession } from './session';
-import { CasUser } from './types';
 
 /**
  * Gets the current logged-in user.
@@ -8,7 +8,7 @@ import { CasUser } from './types';
  */
 export const getCurrentUser = async <T = CasUser>(): Promise<T | null> => {
     const { user } = await getSession();
-    return user;
+    return user ?? null;
 };
 
 /**

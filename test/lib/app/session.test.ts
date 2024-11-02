@@ -1,5 +1,5 @@
-import { getSession } from '@/lib/session';
-import { createMockSession } from '../setup-jest';
+import { getSession } from '@/lib/app/session';
+import { createMockSession } from '../../setup-jest';
 import * as IronSession from 'iron-session';
 
 describe('Session', () => {

@@ -7,6 +7,7 @@ export default tseslint.config({
     ignores: ['**/dist/*'],
     rules: {
         'prettier/prettier': ['error', { endOfLine: 'auto' }],
-        '@typescript-eslint/no-explicit-any': 'off'
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-require-imports': 'off'
     }
 });
