@@ -1,4 +1,4 @@
-import { isLoggedIn } from 'next-cas-client';
+import { isLoggedIn } from 'next-cas-client/app';
 import LoginButton from './login-button';
 
 const Navbar = async () => {
