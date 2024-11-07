@@ -1,6 +1,6 @@
 'use client';
 
-import { login, logout } from 'next-cas-client/client';
+import { login, logout } from 'next-cas-client';
 import { Button } from './ui/button';
 
 const LoginButton = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
