@@ -24,7 +24,7 @@ Currently supports CAS 2.0, CAS 3.0 and SAML 1.1 service validation methods.
 -   [FAQ](#faq)
     -   [Is there support for other React frameworks like Vite and Remix?](#is-there-support-for-other-react-frameworks-like-vite-and-remix)
     -   [How do I use `getCurrentUser()` and `isLoggedIn()` in a client component?](#how-do-i-use-getcurrentuser-and-isloggedin-in-a-client-component)
-    -   [How do I resolve the error when importing `login()` and `logout()` from `'next-cas-client/client'`?](#how-do-i-resolve-the-error-when-importing-login-and-logout-from-next-cas-clientclient)
+    -   [How do I resolve the error when importing `getCurrentUser()` and `isLoggedIn()` from `'next-cas-client/app'` or `'next-cas-client/pages'`?](#how-do-i-resolve-the-error-when-importing-getcurrentuser-and-isloggedin-from-next-cas-clientapp-or-next-cas-clientpages)
 
 ## Getting Started
 
@@ -68,17 +68,19 @@ NEXT_CAS_CLIENT_SECRET=GenerateA32CharacterLongPassword
 **App Router:** `app/api/cas/[client]/route.ts`:
 
 ```ts
-import { handleAuth, ValidatorProtocol } from 'next-cas-client';
+import { ValidatorProtocol } from 'next-cas-client';
+import { handleAuth } from 'next-cas-client/app';
 
-export const GET = handleAuth({ validator: ValidatorProtocol.SAML11 });
+export const GET = handleAuth({ validator: ValidatorProtocol.CAS30 });
 ```
 
 **Page Router:** `pages/api/cas/[client].ts`:
 
 ```ts
-import { handleAuth, ValidatorProtocol } from 'next-cas-client';
+import { ValidatorProtocol } from 'next-cas-client';
+import { handleAuth } from 'next-cas-client/pages';
 
-export default handleAuth({ validator: ValidatorProtocol.SAML11 });
+export default handleAuth({ validator: ValidatorProtocol.CAS30 });
 ```
 
 **handleAuth() Options:**
@@ -90,7 +92,7 @@ export default handleAuth({ validator: ValidatorProtocol.SAML11 });
 -   `loadUser` _(Optional)_: Function to redefine the user object stored in session.
 
     -   Parameters: `casUser: CasUser`
-    -   Returns: `any | promise<any>`
+    -   Returns: `any | Promise<any>`
     -   If a `loadUser` function is not passed in, the stored user in session defaults to a object of type `CasUser`:
         ```ts
         type CasUser = {
@@ -127,7 +129,7 @@ Visits the CAS login page.
 ```jsx
 'use client';
 
-import { login } from 'next-cas-client/client';
+import { login } from 'next-cas-client';
 
 <button onClick={() => login()}>Login</button>;
 ```
@@ -143,7 +145,7 @@ Visits the CAS logout page.
 ```jsx
 'use client';
 
-import { login } from 'next-cas-client/client';
+import { login } from 'next-cas-client';
 
 <button onClick={() => logout()}>Logout</button>;
 ```
@@ -156,8 +158,22 @@ import { login } from 'next-cas-client/client';
 
 Gets the current user. Returns `null` if no user is logged-in.
 
+**App Router:**
+
 ```ts
+import { getCurrentUser } from 'next-cas-client/app';
+
 const currentUser = await getCurrentUser();
+```
+
+**Page Router:**
+
+```ts
+import { getCurrentUser } from 'next-cas-client/pages';
+
+export const getServerSideProps = (async (context) => {
+    return { props: { currentUser: await getCurrentUser(context) } };
+}) satisfies GetServerSideProps<{ currentUser: CasUser | null }>;
 ```
 
 Returns an object of type `CasUser` by default. Define the generic type of `getCurrentUser()` if you used the `loadUser` option in `handleAuth()`. The type should match the return of the `loadUser` function you defined.
@@ -179,8 +195,22 @@ Returns an object of type `CasUser` by default. Define the generic type of `getC
 
 Returns `true` if a user is logged-in.
 
+**App Router:**
+
 ```ts
+import { getCurrentUser } from 'next-cas-client/app';
+
 const isLoggedIn = await isLoggedIn();
+```
+
+**Page Router:**
+
+```ts
+import { getCurrentUser } from 'next-cas-client/pages';
+
+export const getServerSideProps = (async (context) => {
+    return { props: { isLoggedIn: await isLoggedIn(context) } };
+}) satisfies GetServerSideProps<{ isLoggedIn: boolean }>;
 ```
 
 ## Examples
@@ -213,6 +243,6 @@ No, not at this moment.
 
 It is recommended to use those functions inside a server component then pass them as props into a client component.
 
-### How do I resolve the error when importing `login()` and `logout()` from `'next-cas-client/client'`?
+### How do I resolve the error when importing `getCurrentUser()` and `isLoggedIn()` from `'next-cas-client/app'` or `'next-cas-client/pages'`?
 
 In your project's `tsconfig.json`, set `compilerOptions.moduleResolution` to "bundler".
