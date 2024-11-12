@@ -3,5 +3,5 @@ import { SessionData, SessionOptions } from '../session';
 import { cookies } from 'next/headers';
 
 export const getSession = async (): Promise<IronSession<SessionData>> => {
-    return await getIronSession<SessionData>(cookies(), SessionOptions);
+    return await getIronSession<SessionData>(await cookies(), SessionOptions);
 };
