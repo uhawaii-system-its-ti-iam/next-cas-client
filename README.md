@@ -1,4 +1,4 @@
-# next-cas-client [![CI](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml/badge.svg)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml) ![Coverage](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/badges/badges/coverage-jest%20coverage.svg) [![GitHub license](https://img.shields.io/github/license/uhawaii-system-its-ti-iam/next-cas-client?style=flat)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/master/LICENSE)
+# next-cas-client [![CI](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml/badge.svg)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml) ![Coverage](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/badges/badges/coverage-total.svg) [![GitHub license](https://img.shields.io/github/license/uhawaii-system-its-ti-iam/next-cas-client?style=flat)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/master/LICENSE)
 
 _Maintained by the University of Hawaiʻi._
 
