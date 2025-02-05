@@ -1,6 +1,6 @@
 {
     "name": "next-cas-client",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "description": "A CAS client built for Next.js to authenticate, validate tickets, and provide session management to a CAS server",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
@@ -10,9 +10,9 @@
     "scripts": {
         "build": "tsup",
         "lint": "eslint",
-        "test": "jest",
-        "test:coverage": "jest --coverage",
-        "test:watch": "jest --watch"
+        "test": "vitest",
+        "test:ui": "vitest --ui",
+        "test:coverage": "vitest run --coverage"
     },
     "exports": {
         ".": {
@@ -51,23 +51,22 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.13.0",
-        "@swc/core": "^1.7.26",
-        "@swc/jest": "^0.2.36",
         "@types/eslint__js": "^8.42.3",
-        "@types/jest": "^29.5.14",
         "@types/node": "^22.7.3",
         "@types/uniqid": "^5.3.4",
+        "@vitest/coverage-istanbul": "^3.0.5",
+        "@vitest/ui": "^3.0.5",
         "eslint": "^9.13.0",
         "eslint-config-prettier": "^10.0.1",
         "eslint-plugin-prettier": "^5.2.1",
-        "jest": "^29.7.0",
-        "jest-environment-jsdom": "^29.7.0",
-        "jest-fetch-mock": "^3.0.3",
         "prettier": "^3.3.3",
         "ts-node": "^10.9.2",
         "tsup": "^8.3.0",
         "typescript": "^5.6.3",
-        "typescript-eslint": "^8.11.0"
+        "typescript-eslint": "^8.11.0",
+        "vite-tsconfig-paths": "^5.1.4",
+        "vitest": "^3.0.5",
+        "vitest-fetch-mock": "^0.4.3"
     },
     "peerDependencies": {
         "next": "^13 || ^14 || ^15",

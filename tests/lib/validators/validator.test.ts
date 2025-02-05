@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import Cas20Validator from '@/lib/validators/cas-20-validator';
 import Cas30Validator from '@/lib/validators/cas-30-validator';
 import Saml11Validator from '@/lib/validators/saml-11-validator';

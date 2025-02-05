@@ -1,3 +1,4 @@
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { login, logout } from '@/lib/client';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
@@ -5,7 +6,7 @@ const casUrl = process.env.NEXT_PUBLIC_CAS_URL as string;
 
 describe('Client', () => {
     afterEach(() => {
-        jest.resetModules();
+        vi.resetModules();
     });
 
     describe('login', () => {

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { handleAuth } from '@/lib/pages/handler';
 import { ValidatorProtocol } from '@/lib/validators/validator';
 import {
@@ -5,7 +6,7 @@ import {
     createMockNextApiResponse,
     createMockSession,
     loadResourceXML
-} from '../../setup-jest';
+} from '../../vitest.setup';
 import * as IronSession from 'iron-session';
 import { CasUser } from '@/lib/types';
 
@@ -17,13 +18,8 @@ describe('Handler', () => {
         const options = { validator: ValidatorProtocol.SAML11 };
 
         describe('login', () => {
-            beforeAll(() => {
-                jest.useFakeTimers();
-                jest.setSystemTime(new Date('2017-08-15T06:30:04.700Z'));
-            });
-
-            afterAll(() => {
-                jest.useRealTimers();
+            beforeEach(() => {
+                vi.setSystemTime(new Date('2017-08-15T06:30:04.700Z'));
             });
 
             it('should save the session and redirect', async () => {
@@ -32,8 +28,8 @@ describe('Handler', () => {
 
                 fetchMock.mockResponse(saml11ValidationSuccess);
                 const session = createMockSession();
-                const sessionSaveSpy = jest.spyOn(session, 'save');
-                jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
+                const sessionSaveSpy = vi.spyOn(session, 'save');
+                vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
 
                 const handler = handleAuth(options);
                 await handler(mockNextApiRequest, mockNextApiResponse);
@@ -47,8 +43,8 @@ describe('Handler', () => {
                 const mockNextApiResponse = createMockNextApiResponse();
 
                 const session = createMockSession();
-                const sessionSaveSpy = jest.spyOn(session, 'save');
-                jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
+                const sessionSaveSpy = vi.spyOn(session, 'save');
+                vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
 
                 // Invalid ticket
                 fetchMock.mockResponse(saml11ValidationFailure);
@@ -72,8 +68,8 @@ describe('Handler', () => {
 
                 fetchMock.mockResponse(saml11ValidationSuccess);
                 const session = createMockSession();
-                const sessionSaveSpy = jest.spyOn(session, 'save');
-                jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
+                const sessionSaveSpy = vi.spyOn(session, 'save');
+                vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
 
                 const user = { uid: 'testPrincipal' };
                 const loadUser = (casUser: CasUser) => ({ uid: casUser.user });
@@ -92,8 +88,8 @@ describe('Handler', () => {
                 const mockNextApiResponse = createMockNextApiResponse();
 
                 const session = createMockSession();
-                jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
-                const sessionDestroySpy = jest.spyOn(session, 'destroy');
+                vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
+                const sessionDestroySpy = vi.spyOn(session, 'destroy');
 
                 const handler = handleAuth(options);
                 await handler(mockNextApiRequest, mockNextApiResponse);

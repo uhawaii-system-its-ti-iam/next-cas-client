@@ -1,9 +1,10 @@
-import Cas20Validator from '@/lib/validators/cas-20-validator';
-import { loadResourceJSON } from '../../setup-jest';
+import { describe, expect, it } from 'vitest';
+import Cas30Validator from '@/lib/validators/cas-30-validator';
+import { loadResourceJSON } from '../../vitest.setup';
 import { CasValidationResponse } from '@/lib/validators/cas-validator';
 
-describe('Cas20Validator', () => {
-    const cas20Validator = new Cas20Validator();
+describe('Cas30Validator', () => {
+    const cas30Validator = new Cas30Validator();
 
     const casValidationSuccess = loadResourceJSON('cas-validation-success.json') as CasValidationResponse;
     const casValidationFailure = loadResourceJSON('cas-validation-failure.json') as CasValidationResponse;
@@ -15,15 +16,15 @@ describe('Cas20Validator', () => {
     describe('validate', () => {
         it('should return the CAS user', async () => {
             fetchMock.mockResponse(JSON.stringify(casValidationSuccess));
-            expect(await cas20Validator.validate('ticket')).toEqual(casUser);
+            expect(await cas30Validator.validate('ticket')).toEqual(casUser);
         });
 
         it('should throw an error', async () => {
             fetchMock.mockAbort();
-            await expect(cas20Validator.validate('ticket')).rejects.toThrow();
+            await expect(cas30Validator.validate('ticket')).rejects.toThrow();
 
             fetchMock.mockResponse(JSON.stringify(casValidationFailure));
-            await expect(cas20Validator.validate('ticket')).rejects.toThrow();
+            await expect(cas30Validator.validate('ticket')).rejects.toThrow();
         });
     });
 });

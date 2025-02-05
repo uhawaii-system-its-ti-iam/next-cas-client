@@ -1,8 +1,13 @@
-import { enableFetchMocks } from 'jest-fetch-mock';
 import fs from 'fs';
+import createFetchMock from 'vitest-fetch-mock';
+import { vi } from 'vitest';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-enableFetchMocks();
+createFetchMock(vi).enableMocks();
+
+vi.mock('iron-session');
+vi.mock('next/headers');
+vi.mock('next/navigation');
 
 Object.defineProperty(window, 'location', {
     value: {
@@ -13,9 +18,9 @@ Object.defineProperty(window, 'location', {
 
 export const createMockSession = (user?: any) => ({
     user,
-    destroy: jest.fn(),
-    save: jest.fn(),
-    updateConfig: jest.fn()
+    destroy: vi.fn(),
+    save: vi.fn(),
+    updateConfig: vi.fn()
 });
 
 export const createMockNextApiRequest = (client: string) =>
@@ -28,10 +33,10 @@ export const createMockNextApiRequest = (client: string) =>
 
 export const createMockNextApiResponse = () =>
     ({
-        redirect: jest.fn()
+        redirect: vi.fn()
     }) as unknown as NextApiResponse;
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 export const loadResourceJSON = (path: string): object => require(`./resources/${path}`);
 export const loadResourceXML = (path: string): string =>
-    fs.readFileSync(`./test/resources/${path}`, { encoding: 'utf-8' });
+    fs.readFileSync(`./tests/resources/${path}`, { encoding: 'utf-8' });
