@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import { HandleAuthOptions, handleLogin, handleLogout } from '../handler';
 import { getSession } from './session';
+import { redirect } from 'next/navigation';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 
@@ -24,6 +25,6 @@ export const handleAuth =
         } catch (err) {
             console.error(err);
         } finally {
-            require('next/navigation').redirect(baseUrl);
+            redirect(baseUrl);
         }
     };

@@ -1,5 +1,6 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import Saml11Validator from '@/lib/validators/saml-11-validator';
-import { loadResourceXML } from '../../setup-jest';
+import { loadResourceXML } from '../../vitest.setup';
 
 describe('Saml11Validator', () => {
     const saml11Validator = new Saml11Validator();
@@ -17,13 +18,8 @@ describe('Saml11Validator', () => {
     };
 
     describe('validate', () => {
-        beforeAll(() => {
-            jest.useFakeTimers();
-            jest.setSystemTime(new Date('2017-08-15T06:30:04.700Z'));
-        });
-
-        afterAll(() => {
-            jest.useRealTimers();
+        beforeEach(() => {
+            vi.setSystemTime(new Date('2017-08-15T06:30:04.700Z'));
         });
 
         it('should return the CAS user', async () => {
@@ -43,13 +39,13 @@ describe('Saml11Validator', () => {
             process.env.SAML_TOLERANCE = '1000';
             fetchMock.mockResponse(saml11ValidationSuccess);
 
-            jest.setSystemTime(new Date('2017-08-15T06:30:04.700Z'));
+            vi.setSystemTime(new Date('2017-08-15T06:30:04.700Z'));
             expect(await saml11Validator.validate('ticket')).toEqual(casUser);
 
-            jest.setSystemTime(new Date('2017-08-15T06:30:03.622Z'));
+            vi.setSystemTime(new Date('2017-08-15T06:30:03.622Z'));
             await expect(saml11Validator.validate('ticket')).rejects.toThrow();
 
-            jest.setSystemTime(new Date('2017-08-15T06:30:06.622Z'));
+            vi.setSystemTime(new Date('2017-08-15T06:30:06.622Z'));
             await expect(saml11Validator.validate('ticket')).rejects.toThrow();
         });
     });

@@ -1,6 +1,7 @@
+import { describe, expect, it, vi } from 'vitest';
 import { getCurrentUser, isLoggedIn } from '@/lib/pages/server';
 import * as IronSession from 'iron-session';
-import { createMockNextApiRequest, createMockNextApiResponse, createMockSession } from '../../setup-jest';
+import { createMockNextApiRequest, createMockNextApiResponse, createMockSession } from '../../vitest.setup';
 import { GetServerSidePropsContext } from 'next';
 
 describe('Server', () => {
@@ -13,13 +14,13 @@ describe('Server', () => {
 
     describe('getCurrentUser', () => {
         it('should return the current user', async () => {
-            jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession(user));
+            vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession(user));
 
             expect(await getCurrentUser<User>(context)).toEqual(user);
         });
 
         it('should return null when no current user is stored in session', async () => {
-            jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession());
+            vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession());
 
             expect(await getCurrentUser<User>(context)).toBeNull();
         });
@@ -27,13 +28,13 @@ describe('Server', () => {
 
     describe('isLoggedIn', () => {
         it('should return true', async () => {
-            jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession(user));
+            vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession(user));
 
             expect(await isLoggedIn(context)).toBeTruthy();
         });
 
         it('should return false', async () => {
-            jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession());
+            vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(createMockSession());
 
             expect(await isLoggedIn(context)).toBeFalsy();
         });

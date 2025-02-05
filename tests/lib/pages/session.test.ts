@@ -1,5 +1,6 @@
+import { describe, expect, it, vi } from 'vitest';
 import { getSession } from '@/lib/pages/session';
-import { createMockNextApiRequest, createMockNextApiResponse, createMockSession } from '../../setup-jest';
+import { createMockNextApiRequest, createMockNextApiResponse, createMockSession } from '../../vitest.setup';
 import * as IronSession from 'iron-session';
 import { GetServerSidePropsContext } from 'next';
 
@@ -12,7 +13,7 @@ describe('Session', () => {
             } as unknown as GetServerSidePropsContext;
 
             const session = createMockSession();
-            const getIronSessionSpy = jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
+            const getIronSessionSpy = vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
 
             expect(await getSession(context)).toBe(session);
             expect(getIronSessionSpy).toHaveBeenCalled();
@@ -23,7 +24,7 @@ describe('Session', () => {
             const res = createMockNextApiResponse();
 
             const session = createMockSession();
-            const getIronSessionSpy = jest.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
+            const getIronSessionSpy = vi.spyOn(IronSession, 'getIronSession').mockResolvedValue(session);
 
             expect(await getSession(req, res)).toBe(session);
             expect(getIronSessionSpy).toHaveBeenCalled();
