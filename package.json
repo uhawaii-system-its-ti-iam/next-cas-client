@@ -1,6 +1,6 @@
 {
     "name": "next-cas-client",
-    "version": "1.3.3",
+    "version": "1.3.4",
     "description": "A CAS client built for Next.js to authenticate, validate tickets, and provide session management to a CAS server",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
