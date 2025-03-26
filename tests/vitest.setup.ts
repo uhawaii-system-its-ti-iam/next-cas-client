@@ -36,7 +36,6 @@ export const createMockNextApiResponse = () =>
         redirect: vi.fn()
     }) as unknown as NextApiResponse;
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 export const loadResourceJSON = (path: string): object => require(`./resources/${path}`);
 export const loadResourceXML = (path: string): string =>
     fs.readFileSync(`./tests/resources/${path}`, { encoding: 'utf-8' });
