@@ -1,6 +1,6 @@
 /.github
 /src
-/test
+/tests
 /examples
 /__mocks__
 /node_modules
@@ -16,4 +16,4 @@ eslint.config.mjs
 .prettierignore
 tsconfig.json
 tsup.config.ts
-jest.config.ts
+vitest.config.mts
