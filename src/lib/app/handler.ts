@@ -13,7 +13,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
  */
 export const handleAuth =
     (options: HandleAuthOptions) =>
-    async (req: NextRequest, { params }: { params: { client: 'login' | 'logout', redirect?:string } }) => {
+    async (req: NextRequest, { params }: { params: { client: 'login' | 'logout' } }) => {
         try {
             const session = await getSession();
             if (params.client === 'login') {
@@ -25,8 +25,10 @@ export const handleAuth =
         } catch (err) {
             console.error(err);
         } finally {
-            if (params.redirect) {
-                redirect(params.redirect);
+            const redirectUrl = req.nextUrl.searchParams.get('redirect');
+
+            if (redirectUrl) {
+                redirect(redirectUrl);
             } else {
                 redirect(baseUrl);
             }
