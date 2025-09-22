@@ -10,21 +10,21 @@ Currently supports CAS 2.0, CAS 3.0 and SAML 1.1 service validation methods.
 
 ## Table of Contents
 
--   [Getting Started](#getting-started)
-    -   [Installation](#1-installation)
-    -   [Set Environment Variables](#2-set-environment-variables)
-    -   [Add API Route](#3-add-api-route)
--   [Usage](#usage)
-    -   [`login(): void`](#login-void-client-side-only)
-    -   [`logout(): void`](#logout-void-client-side-only)
-    -   [`getCurrentUser<T>(): Promise<T = CasUser | null>`](#getcurrentusert-promiset--casuser--null-server-side-only)
-    -   [`isLoggedIn(): Promise<boolean>`](#isloggedin-promiseboolean-server-side-only)
--   [Examples](#examples)
--   [Contributing](#contributing)
--   [FAQ](#faq)
-    -   [Is there support for other React frameworks like Vite and Remix?](#is-there-support-for-other-react-frameworks-like-vite-and-remix)
-    -   [How do I use `getCurrentUser()` and `isLoggedIn()` in a client component?](#how-do-i-use-getcurrentuser-and-isloggedin-in-a-client-component)
-    -   [How do I resolve the error when importing `getCurrentUser()` and `isLoggedIn()` from `'next-cas-client/app'` or `'next-cas-client/pages'`?](#how-do-i-resolve-the-error-when-importing-getcurrentuser-and-isloggedin-from-next-cas-clientapp-or-next-cas-clientpages)
+- [Getting Started](#getting-started)
+    - [Installation](#1-installation)
+    - [Set Environment Variables](#2-set-environment-variables)
+    - [Add API Route](#3-add-api-route)
+- [Usage](#usage)
+    - [`login(): void`](#login-void-client-side-only)
+    - [`logout(): void`](#logout-void-client-side-only)
+    - [`getCurrentUser<T>(): Promise<T = CasUser | null>`](#getcurrentusert-promiset--casuser--null-server-side-only)
+    - [`isLoggedIn(): Promise<boolean>`](#isloggedin-promiseboolean-server-side-only)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [FAQ](#faq)
+    - [Is there support for other React frameworks like Vite and Remix?](#is-there-support-for-other-react-frameworks-like-vite-and-remix)
+    - [How do I use `getCurrentUser()` and `isLoggedIn()` in a client component?](#how-do-i-use-getcurrentuser-and-isloggedin-in-a-client-component)
+    - [How do I resolve the error when importing `getCurrentUser()` and `isLoggedIn()` from `'next-cas-client/app'` or `'next-cas-client/pages'`?](#how-do-i-resolve-the-error-when-importing-getcurrentuser-and-isloggedin-from-next-cas-clientapp-or-next-cas-clientpages)
 
 ## Getting Started
 
@@ -51,9 +51,9 @@ NEXT_PUBLIC_CAS_URL=https://cas.example.com/cas
 NEXT_CAS_CLIENT_SAML_TOLERANCE=18000
 ```
 
--   `NEXT_PUBLIC_BASE_URL` **(Required)**: The URL to redirect to after logging-in/out
--   `NEXT_PUBLIC_CAS_URL` **(Required)**: The URL prefix of your CAS server
--   `NEXT_CAS_CLIENT_SAML_TOLERANCE` _(Optional)_: The tolerance in milliseconds for drifting clocks when validating SAML tickets. Only applies to SAML 1.1 validation. Defaults to 1000 milliseconds.
+- `NEXT_PUBLIC_BASE_URL` **(Required)**: The URL to redirect to after logging-in/out
+- `NEXT_PUBLIC_CAS_URL` **(Required)**: The URL prefix of your CAS server
+- `NEXT_CAS_CLIENT_SAML_TOLERANCE` _(Optional)_: The tolerance in milliseconds for drifting clocks when validating SAML tickets. Only applies to SAML 1.1 validation. Defaults to 1000 milliseconds.
 
 `.env.local`:
 
@@ -61,7 +61,7 @@ NEXT_CAS_CLIENT_SAML_TOLERANCE=18000
 NEXT_CAS_CLIENT_SECRET=GenerateA32CharacterLongPassword
 ```
 
--   `NEXT_CAS_CLIENT_SECRET` **(Required)**: The secret used to encrypt/decrypt the session stored as a cookie. It must be greater than 32 characters long. Use https://1password.com/password-generator to generate a password.
+- `NEXT_CAS_CLIENT_SECRET` **(Required)**: The secret used to encrypt/decrypt the session stored as a cookie. It must be greater than 32 characters long. Use https://1password.com/password-generator to generate a password.
 
 ### 3. Add API Route
 
@@ -85,22 +85,21 @@ export default handleAuth({ validator: ValidatorProtocol.CAS30 });
 
 **handleAuth() Options:**
 
--   `validator` **(Required)**: The ValidatorProtocol enum
-    -   `ValidatorProtocol.CAS20` for CAS 2.0 service validation
-    -   `ValidatorProtocol.CAS20` for CAS 3.0 service validation
-    -   `ValidatorProtocol.SAML11` for SAML 1.1 validation
--   `loadUser` _(Optional)_: Function to redefine the user object stored in session.
-
-    -   Parameters: `casUser: CasUser`
-    -   Returns: `any | Promise<any>`
-    -   If a `loadUser` function is not passed in, the stored user in session defaults to a object of type `CasUser`:
+- `validator` **(Required)**: The ValidatorProtocol enum
+    - `ValidatorProtocol.CAS20` for CAS 2.0 service validation
+    - `ValidatorProtocol.CAS20` for CAS 3.0 service validation
+    - `ValidatorProtocol.SAML11` for SAML 1.1 validation
+- `loadUser` _(Optional)_: Function to redefine the user object stored in session.
+    - Parameters: `casUser: CasUser`
+    - Returns: `any | Promise<any>`
+    - If a `loadUser` function is not passed in, the stored user in session defaults to a object of type `CasUser`:
         ```ts
         type CasUser = {
             user: string;
             attributes: record<string, string | string[]>;
         };
         ```
-    -   **Example:** Using `loadUser` to redefine the user and store authorization roles:
+    - **Example:** Using `loadUser` to redefine the user and store authorization roles:
 
         ```ts
         import { handleAuth, ValidatorProtocol } from 'next-cas-client';
@@ -136,7 +135,8 @@ import { login } from 'next-cas-client';
 
 **login() Options:**
 
--   `renew` _(Optional)_: Boolean, `true` to disallow SSO. Defaults to `false`.
+- `renew` _(Optional)_: Boolean, `true` to disallow SSO. Defaults to `false`.
+- `redirectUrl` _(Optional)_: String, the URL to redirect to after logging-in. Defaults to the value of `NEXT_PUBLIC_BASE_URL` environment variable.
 
 ### `logout(): void` (Client-Side Only)
 
@@ -145,14 +145,14 @@ Visits the CAS logout page.
 ```jsx
 'use client';
 
-import { login } from 'next-cas-client';
+import { logout } from 'next-cas-client';
 
 <button onClick={() => logout()}>Logout</button>;
 ```
 
 **logout() Options:**
 
--   `enableSLO` _(Optional)_: Boolean, `true` to enable SLO (Single Logout). Destroys current SSO session. Defaults to `false`.
+- `enableSLO` _(Optional)_: Boolean, `true` to enable SLO (Single Logout). Destroys current SSO session. Defaults to `false`.
 
 ### `getCurrentUser<T>(): Promise<T = CasUser | null>` (Server-Side Only)
 
@@ -178,7 +178,7 @@ export const getServerSideProps = (async (context) => {
 
 Returns an object of type `CasUser` by default. Define the generic type of `getCurrentUser()` if you used the `loadUser` option in `handleAuth()`. The type should match the return of the `loadUser` function you defined.
 
--   Example:
+- Example:
 
     ```ts
     type User = {
