@@ -8,6 +8,7 @@
     "repository": "https://github.com/uhawaii-system-its-ti-iam/next-cas-client",
     "homepage": "https://github.com/uhawaii-system-its-ti-iam/next-cas-client",
     "scripts": {
+        "prepare": "npm run build",
         "build": "tsup",
         "lint": "eslint",
         "test": "vitest",
