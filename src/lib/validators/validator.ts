@@ -14,8 +14,7 @@ export interface Validator {
 }
 
 export const validationUrl = (validator: Validator): string =>
-    `${casUrl}/${validator.path}?${validator.service}=${encodeURIComponent(`${baseUrl}/api/cas/login`)}` +
-    (validator.redirectUrl ? `&redirect=${encodeURIComponent(validator.redirectUrl)}` : '');
+    `${casUrl}/${validator.path}?${validator.service}=${encodeURIComponent(`${baseUrl}/api/cas/login${validator.redirectUrl ? `?redirect=${encodeURIComponent(validator.redirectUrl)}` : ''}`)}`;
 
 /**
  * The validator protocol.
