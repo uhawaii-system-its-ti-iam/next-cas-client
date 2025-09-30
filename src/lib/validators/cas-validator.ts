@@ -20,7 +20,7 @@ export interface CasValidationResponse {
 
 export const validate = async (validationUrl: string, ticket: string): Promise<CasUser> => {
     try {
-        const response = await fetch(`${validationUrl}&ticket=${ticket}&format=json`);
+        const response = await fetch(`${validationUrl}&ticket=${encodeURIComponent(ticket)}&format=json`);
         const data = (await response.json()) as CasValidationResponse;
 
         if ('authenticationFailure' in data.serviceResponse) {

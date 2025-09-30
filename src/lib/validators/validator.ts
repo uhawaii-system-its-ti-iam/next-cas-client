@@ -9,11 +9,12 @@ const casUrl = process.env.NEXT_PUBLIC_CAS_URL as string;
 export interface Validator {
     path: string;
     service: string;
+    redirectUrl?: string;
     validate(ticket: string): Promise<CasUser>;
 }
 
 export const validationUrl = (validator: Validator): string =>
-    `${casUrl}/${validator.path}?${validator.service}=${encodeURIComponent(`${baseUrl}/api/cas/login`)}`;
+    `${casUrl}/${validator.path}?${validator.service}=${encodeURIComponent(`${baseUrl}/api/cas/login${validator.redirectUrl ? `?redirect=${encodeURIComponent(validator.redirectUrl)}` : ''}`)}`;
 
 /**
  * The validator protocol.
@@ -26,14 +27,14 @@ export enum ValidatorProtocol {
 }
 
 export class ValidatorFactory {
-    static getValidator(type: ValidatorProtocol) {
+    static getValidator(type: ValidatorProtocol, redirectUrl?: string): Validator {
         switch (type) {
             case ValidatorProtocol.CAS20:
-                return new Cas20Validator();
+                return new Cas20Validator(redirectUrl);
             case ValidatorProtocol.CAS30:
-                return new Cas30Validator();
+                return new Cas30Validator(redirectUrl);
             case ValidatorProtocol.SAML11:
-                return new Saml11Validator();
+                return new Saml11Validator(redirectUrl);
         }
     }
 }

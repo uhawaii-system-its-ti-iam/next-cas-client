@@ -3,16 +3,18 @@ const casUrl = process.env.NEXT_PUBLIC_CAS_URL as string;
 
 interface loginOptions {
     renew: boolean;
+    redirectUrl?: string;
 }
 
 /**
  * Redirects the to the CAS login.
  */
 export const login = (options?: loginOptions): void => {
-    let loginUrl = `${casUrl}/login?service=${encodeURIComponent(`${baseUrl}/api/cas/login`)}`;
+    let loginUrl = `${casUrl}/login?service=${encodeURIComponent(`${baseUrl}/api/cas/login${options?.redirectUrl ? `?redirect=${encodeURIComponent(options.redirectUrl)}` : ''}`)}`;
     if (options?.renew) {
         loginUrl += '&renew=true';
     }
+
     window.location.href = loginUrl;
 };
 

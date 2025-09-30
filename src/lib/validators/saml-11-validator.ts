@@ -1,18 +1,22 @@
+import { DOMParser } from '@xmldom/xmldom';
 import uniqid from 'uniqid';
 import { format } from 'util';
-import { DOMParser } from '@xmldom/xmldom';
 import { select } from 'xpath';
-import { validationUrl, Validator } from './validator';
 import { CasUser } from '../types';
+import { validationUrl, Validator } from './validator';
 
 class Saml11Validator implements Validator {
     path = 'samlValidate';
     service = 'TARGET';
     tolerance = parseInt((process.env.NEXT_CAS_CLIENT_SAML_TOLERANCE as string) ?? '1000');
-
+    redirectUrl?: string | undefined;
     private samlRequestTemplate =
         '<?xml version="1.0" encoding="UTF-8"?><SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><samlp:Request xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" MajorVersion="1" MinorVersion="1" RequestID="%s" IssueInstant="%s"><samlp:AssertionArtifact>%s</samlp:AssertionArtifact></samlp:Request></SOAP-ENV:Body></SOAP-ENV:Envelope>';
-
+    constructor(redirectUrl?: string) {
+        if (redirectUrl) {
+            this.redirectUrl = redirectUrl;
+        }
+    }
     async validate(ticket: string): Promise<CasUser> {
         const currentDate = new Date().toISOString();
         const samlRequestBody = format(this.samlRequestTemplate, `${uniqid()}.${currentDate}`, currentDate, ticket);
