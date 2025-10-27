@@ -1,7 +1,5 @@
 # next-cas-client [![CI](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml/badge.svg)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/actions/workflows/ci.yml) ![Coverage](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/badges/badges/coverage-total.svg) [![GitHub license](https://img.shields.io/github/license/uhawaii-system-its-ti-iam/next-cas-client?style=flat)](https://github.com/uhawaii-system-its-ti-iam/next-cas-client/blob/master/LICENSE)
 
-_Maintained by the University of Hawaiʻi._
-
 Designed for Next.js, `next-cas-client` serves as an API platform to interact with a CAS server to authenticate, validate tickets, and provide session management (powered by [iron-session](https://github.com/vvo/iron-session)).
 
 Currently supports CAS 2.0, CAS 3.0 and SAML 1.1 service validation methods.
