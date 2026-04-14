@@ -4,19 +4,30 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
   generate-badges:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@1e60f620b9541d910a34ff8987c4e60f18f47259 # v4.1.3
+        with:
+          node-version: '18'
       - run: npm install
       - run: npm run test:coverage
       - run: |
           git fetch origin badges
           git restore package-lock.json
           git checkout badges
-      - uses: jpb06/coverage-badges-action@latest
+      - uses: jpb06/coverage-badges-action@51a7103c8d4e11d6f80937a9d3e27b2c3f14c8a7 # v1.2.0
         with:
           branches: '*'
           target-branch: badges
