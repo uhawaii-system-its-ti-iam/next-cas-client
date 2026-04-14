@@ -85,7 +85,7 @@ export default handleAuth({ validator: ValidatorProtocol.CAS30 });
 
 - `validator` **(Required)**: The ValidatorProtocol enum
     - `ValidatorProtocol.CAS20` for CAS 2.0 service validation
-    - `ValidatorProtocol.CAS20` for CAS 3.0 service validation
+    - `ValidatorProtocol.CAS30` for CAS 3.0 service validation
     - `ValidatorProtocol.SAML11` for SAML 1.1 validation
 - `loadUser` _(Optional)_: Function to redefine the user object stored in session.
     - Parameters: `casUser: CasUser`

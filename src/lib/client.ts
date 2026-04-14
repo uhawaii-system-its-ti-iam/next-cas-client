@@ -1,15 +1,15 @@
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 const casUrl = process.env.NEXT_PUBLIC_CAS_URL as string;
 
-interface loginOptions {
-    renew: boolean;
+export interface LoginOptions {
+    renew?: boolean;
     redirectUrl?: string;
 }
 
 /**
- * Redirects the to the CAS login.
+ * Redirects to the CAS login.
  */
-export const login = (options?: loginOptions): void => {
+export const login = (options?: LoginOptions): void => {
     let loginUrl = `${casUrl}/login?service=${encodeURIComponent(`${baseUrl}/api/cas/login${options?.redirectUrl ? `?redirect=${encodeURIComponent(options.redirectUrl)}` : ''}`)}`;
     if (options?.renew) {
         loginUrl += '&renew=true';
@@ -18,14 +18,14 @@ export const login = (options?: loginOptions): void => {
     window.location.href = loginUrl;
 };
 
-interface logoutOptions {
-    enableSLO: boolean;
+export interface LogoutOptions {
+    enableSLO?: boolean;
 }
 
 /**
- * Redirects the to the CAS logout.
+ * Redirects to the CAS logout.
  */
-export const logout = (options?: logoutOptions): void => {
+export const logout = (options?: LogoutOptions): void => {
     if (!options?.enableSLO) {
         window.location.href = `${baseUrl}/api/cas/logout`;
         return;

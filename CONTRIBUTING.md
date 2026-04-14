@@ -29,7 +29,7 @@ Thanks for taking the time to contribute to `next-cas-client`! This document wil
 
 ### Running Tests
 
-1. Run `npm run test` to run the Jest tests
+1. Run `npm run test` to run the Vitest tests
 2. Run `npm run test:coverage` to view the test coverage
 
 ## Adding a New Validator
