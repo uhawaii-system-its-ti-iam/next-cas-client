@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '20'
       - run: npm install
@@ -27,7 +27,7 @@ jobs:
           git fetch origin badges
           git restore package-lock.json
           git checkout badges
-      - uses: jpb06/coverage-badges-action@51a7103c8d4e11d6f80937a9d3e27b2c3f14c8a7 # v1.2.0
+      - uses: jpb06/coverage-badges-action@0a7ed097d01918e7a7618152eff8bb62f133322f # v1.4.9
         with:
           branches: '*'
           target-branch: badges
