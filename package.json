@@ -72,7 +72,7 @@
         "vitest-fetch-mock": "^0.4.3"
     },
     "peerDependencies": {
-        "next": "^13 || ^14 || ^15",
+        "next": "^13 || ^14 || ^15 || ^16",
         "react": "^18 || ^19"
     },
     "engines": {
