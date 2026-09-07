@@ -46,7 +46,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "@xmldom/xmldom": "^0.9.9",
-        "iron-session": "^8.0.3",
+        "iron-session": "^9.0.1",
         "uniqid": "^5.4.0",
         "xpath": "^0.0.34"
     },
