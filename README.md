@@ -4,7 +4,7 @@ Designed for Next.js, `next-cas-client` serves as an API platform to interact wi
 
 Currently supports CAS 2.0, CAS 3.0 and SAML 1.1 service validation methods.
 
-**Contributions to this repo to support more validation protocols is highly encouraged!** (See [contributing](#contributing))
+**For contributions to this repo** (See [contributing](#contributing))
 
 ## Table of Contents
 
